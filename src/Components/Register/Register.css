@@ -1,0 +1,83 @@
+/* Register.css */
+
+/* Contenedor que abarca toda la pantalla y muestra la imagen de fondo */
+.register-container {
+    width: 100%;
+    height: 100%;
+    /* Cambia la ruta de la imagen a la tuya */
+    background: url("/assets/images/winter-bg.jpg") no-repeat center center / cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* Caja translúcida con efecto "glass" */
+  .register-box {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 40px 30px;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    color: #fff;
+    animation: fadeIn 1s ease forwards;
+  }
+  
+  /* Título */
+  .register-box h2 {
+    margin-bottom: 30px;
+    font-size: 2rem;
+    font-weight: 600;
+  }
+  
+  /* Líneas personalizadas en IonItem */
+  .custom-lines {
+    --background: transparent;
+    border-bottom: 1px solid #fff;
+    margin-bottom: 20px;
+  }
+  
+  /* Color de texto */
+  .custom-lines ion-label,
+  .custom-lines ion-input {
+    color: #fff;
+  }
+  
+  /* Mensajes de error */
+  .error-message {
+    color: #ffdddd;
+    font-size: 0.85rem;
+    margin-top: -12px;
+    margin-bottom: 8px;
+    text-align: left;
+    padding: 0 8px;
+  }
+  
+  /* Botón de registro */
+  .register-button {
+    --background: #fff;
+    --color: #333;
+    border-radius: 20px;
+    font-weight: 600;
+    margin-top: 10px;
+    transition: transform 0.2s ease;
+  }
+  
+  .register-button:hover {
+    transform: scale(1.02);
+  }
+  
+  /* Animación de aparición */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  

@@ -1,0 +1,29 @@
+/* loading.css */
+
+/* Contenedor que ocupa toda la pantalla */
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #333;
+}
+
+/* Caja central para logo y spinner */
+.loading-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Estilo para la imagen o logo */
+.loading-box img {
+  width: 150px;
+  margin-bottom: 20px;
+}
+
+/* Spinner personalizado (opcional) */
+.ion-spinner {
+  font-size: 2rem;
+  color: #fff;
+}
