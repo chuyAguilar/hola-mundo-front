@@ -1,16 +1,5 @@
-// src/pages/Register.tsx
 import React, { useState, useEffect } from "react";
-import {
-  IonPage,
-  IonContent,
-  IonInput,
-  IonItem,
-  IonLabel,
-  IonButton,
-  IonHeader,
-  IonToolbar,
-  IonTitle,
-} from "@ionic/react";
+import { IonInput, IonItem, IonLabel, IonButton } from "@ionic/react";
 import { registerUser } from "../../api";
 import "./Register.css";
 
@@ -22,7 +11,7 @@ interface Registration {
   birthDate: string;
 }
 
-const Register: React.FC = () => {
+const RegisterComponent: React.FC = () => {
   const [email, setEmail] = useState("");
   const [fullName, setFullName] = useState("");
   const [username, setUsername] = useState("");
@@ -125,7 +114,7 @@ const Register: React.FC = () => {
   const handleRegister = async () => {
     if (!formValid) return;
     try {
-      // Aquí se asigna un rol fijo, por ejemplo "cliente" o "master"
+      // Asignamos un rol fijo, por ejemplo "cliente"
       const role = "cliente";
       // Llamada a la API para registrar el usuario
       await registerUser({ email, username, password, role });
@@ -138,109 +127,100 @@ const Register: React.FC = () => {
       setConfirmPassword("");
       setBirthDate("");
     } catch (error: any) {
-      alert("Error en registro: " + error.response?.data?.message || error.message);
+      alert("Error en registro: " + (error.response?.data?.message || error.message));
     }
   };
 
   return (
-    <IonPage>
-      <IonHeader>
-        <IonToolbar>
-          <IonTitle>Registro</IonTitle>
-        </IonToolbar>
-      </IonHeader>
-      <IonContent fullscreen>
-        <div className="register-container">
-          <div className="register-box">
-            <h2>Register</h2>
-            {/* Email */}
-            <IonItem lines="none" className="custom-lines">
-              <IonLabel position="stacked">Email</IonLabel>
-              <IonInput
-                value={email}
-                onIonInput={handleEmailChange}
-                type="email"
-                placeholder="Ingresa tu correo"
-                required
-              />
-            </IonItem>
-            {errors.email && <p className="error-message">{errors.email}</p>}
-            {/* Nombre completo */}
-            <IonItem lines="none" className="custom-lines">
-              <IonLabel position="stacked">Full Name</IonLabel>
-              <IonInput
-                value={fullName}
-                onIonInput={handleFullNameChange}
-                type="text"
-                placeholder="Ingresa tu nombre completo"
-                required
-              />
-            </IonItem>
-            {errors.fullName && <p className="error-message">{errors.fullName}</p>}
-            {/* Usuario */}
-            <IonItem lines="none" className="custom-lines">
-              <IonLabel position="stacked">Username</IonLabel>
-              <IonInput
-                value={username}
-                onIonInput={handleUsernameChange}
-                type="text"
-                placeholder="Ingresa tu usuario"
-                required
-              />
-            </IonItem>
-            {errors.username && <p className="error-message">{errors.username}</p>}
-            {/* Contraseña */}
-            <IonItem lines="none" className="custom-lines">
-              <IonLabel position="stacked">Password</IonLabel>
-              <IonInput
-                value={password}
-                onIonInput={handlePasswordChange}
-                type="password"
-                placeholder="Ingresa tu contraseña"
-                required
-              />
-            </IonItem>
-            {errors.password && <p className="error-message">{errors.password}</p>}
-            {/* Confirmar Contraseña */}
-            <IonItem lines="none" className="custom-lines">
-              <IonLabel position="stacked">Confirm Password</IonLabel>
-              <IonInput
-                value={confirmPassword}
-                onIonInput={handleConfirmPasswordChange}
-                type="password"
-                placeholder="Confirma tu contraseña"
-                required
-              />
-            </IonItem>
-            {errors.confirmPassword && (
-              <p className="error-message">{errors.confirmPassword}</p>
-            )}
-            {/* Fecha de nacimiento */}
-            <IonItem lines="none" className="custom-lines">
-              <IonLabel position="stacked">Birth Date</IonLabel>
-              <IonInput
-                value={birthDate}
-                onIonInput={handleBirthDateChange}
-                type="date"
-                placeholder="Ingresa tu fecha de nacimiento"
-                required
-              />
-            </IonItem>
-            {errors.birthDate && <p className="error-message">{errors.birthDate}</p>}
-            {/* Botón para registrar */}
-            <IonButton
-              expand="block"
-              disabled={!formValid}
-              className="register-button"
-              onClick={handleRegister}
-            >
-              Sign up
-            </IonButton>
-          </div>
-        </div>
-      </IonContent>
-    </IonPage>
+    <div className="register-container">
+      <div className="register-box">
+        <h2>Register</h2>
+        {/* Email */}
+        <IonItem lines="none" className="custom-lines">
+          <IonLabel position="stacked">Email</IonLabel>
+          <IonInput
+            value={email}
+            onIonInput={handleEmailChange}
+            type="email"
+            placeholder="Ingresa tu correo"
+            required
+          />
+        </IonItem>
+        {errors.email && <p className="error-message">{errors.email}</p>}
+        {/* Nombre completo */}
+        <IonItem lines="none" className="custom-lines">
+          <IonLabel position="stacked">Full Name</IonLabel>
+          <IonInput
+            value={fullName}
+            onIonInput={handleFullNameChange}
+            type="text"
+            placeholder="Ingresa tu nombre completo"
+            required
+          />
+        </IonItem>
+        {errors.fullName && <p className="error-message">{errors.fullName}</p>}
+        {/* Usuario */}
+        <IonItem lines="none" className="custom-lines">
+          <IonLabel position="stacked">Username</IonLabel>
+          <IonInput
+            value={username}
+            onIonInput={handleUsernameChange}
+            type="text"
+            placeholder="Ingresa tu usuario"
+            required
+          />
+        </IonItem>
+        {errors.username && <p className="error-message">{errors.username}</p>}
+        {/* Contraseña */}
+        <IonItem lines="none" className="custom-lines">
+          <IonLabel position="stacked">Password</IonLabel>
+          <IonInput
+            value={password}
+            onIonInput={handlePasswordChange}
+            type="password"
+            placeholder="Ingresa tu contraseña"
+            required
+          />
+        </IonItem>
+        {errors.password && <p className="error-message">{errors.password}</p>}
+        {/* Confirmar Contraseña */}
+        <IonItem lines="none" className="custom-lines">
+          <IonLabel position="stacked">Confirm Password</IonLabel>
+          <IonInput
+            value={confirmPassword}
+            onIonInput={handleConfirmPasswordChange}
+            type="password"
+            placeholder="Confirma tu contraseña"
+            required
+          />
+        </IonItem>
+        {errors.confirmPassword && (
+          <p className="error-message">{errors.confirmPassword}</p>
+        )}
+        {/* Fecha de nacimiento */}
+        <IonItem lines="none" className="custom-lines">
+          <IonLabel position="stacked">Birth Date</IonLabel>
+          <IonInput
+            value={birthDate}
+            onIonInput={handleBirthDateChange}
+            type="date"
+            placeholder="Ingresa tu fecha de nacimiento"
+            required
+          />
+        </IonItem>
+        {errors.birthDate && <p className="error-message">{errors.birthDate}</p>}
+        {/* Botón para registrar */}
+        <IonButton
+          expand="block"
+          disabled={!formValid}
+          className="register-button"
+          onClick={handleRegister}
+        >
+          Sign up
+        </IonButton>
+      </div>
+    </div>
   );
 };
 
-export default Register;
+export default RegisterComponent;
