@@ -1,4 +1,3 @@
-// src/pages/AdminUsers.tsx
 import React, { useEffect, useState } from 'react';
 import {
   IonPage,
@@ -18,8 +17,8 @@ import {
   IonRow,
   IonCol,
 } from '@ionic/react';
-import axios from 'axios';
 import { useHistory } from 'react-router-dom';
+import { getUsers, updateUser, deleteUser } from '../../api'; // Importamos las funciones desde api.ts
 
 interface User {
   id: string;
@@ -41,29 +40,30 @@ const AdminUsers: React.FC = () => {
   const [updatedUsername, setUpdatedUsername] = useState('');
   const [updatedRole, setUpdatedRole] = useState('');
 
-  const fetchUsers = () => {
-    axios.get('http://localhost:5000/api/users')
-      .then(response => {
-        // Aseguramos que cada usuario tenga una propiedad 'id'
-        setUsers(response.data.users);
-      })
-      .catch(error => {
-        console.error('Error fetching users:', error);
-      });
+  // Función para obtener la lista de usuarios
+  const fetchUsers = async () => {
+    try {
+      const response = await getUsers();
+      setUsers(response.data.users);
+    } catch (error) {
+      console.error('Error fetching users:', error);
+      setToastMessage('Error obteniendo usuarios');
+      setShowToast(true);
+    }
   };
 
   useEffect(() => {
     fetchUsers();
   }, []);
 
+  // Función para eliminar un usuario
   const handleDeleteUser = async (id: string) => {
     console.log('Intentando borrar el usuario con id:', id);
     try {
-      const response = await axios.delete(`http://localhost:5000/api/users/${id}`);
-      console.log('Respuesta de borrado:', response.data);
+      await deleteUser(id);
       setToastMessage('Usuario borrado exitosamente.');
       setShowToast(true);
-      fetchUsers(); // Refrescar la lista
+      fetchUsers(); // Refrescar la lista después de borrar
     } catch (error: any) {
       console.error('Error borrando usuario:', error);
       setToastMessage('Error borrando usuario: ' + (error.response?.data?.message || error.message));
@@ -71,6 +71,7 @@ const AdminUsers: React.FC = () => {
     }
   };
 
+  // Función para abrir el modal de actualización
   const openUpdateModal = (user: User) => {
     setSelectedUser(user);
     setUpdatedEmail(user.email);
@@ -79,21 +80,21 @@ const AdminUsers: React.FC = () => {
     setShowModal(true);
   };
 
+  // Función para actualizar un usuario
   const handleUpdateUser = async () => {
     if (!selectedUser) return;
-    const updateData: any = {
+    const updateData = {
       email: updatedEmail,
       username: updatedUsername,
       role: updatedRole,
     };
 
     try {
-      const response = await axios.put(`http://localhost:5000/api/users/${selectedUser.id}`, updateData);
-      console.log('Respuesta de actualización:', response.data);
+      await updateUser(selectedUser.id, updateData);
       setToastMessage('Usuario actualizado exitosamente.');
       setShowToast(true);
       setShowModal(false);
-      fetchUsers();
+      fetchUsers(); // Refrescar la lista
     } catch (error: any) {
       console.error('Error actualizando usuario:', error);
       setToastMessage('Error actualizando usuario: ' + (error.response?.data?.message || error.message));

@@ -20,7 +20,7 @@ const LoadingInit: React.FC = () => {
       <IonContent className="loading-container">
         <div className="loading-box">
           {/* Imagen o logo centrado */}
-          <IonImg src="public/Logo.png" alt="App Logo" className="logo" />
+          <IonImg src="/Logo.png" alt="App Logo" className="logo" />
           {/* Mensaje de bienvenida animado */}
           <h1 className="welcome-message">¡Bienvenido a Mi App!</h1>
           {/* Spinner de carga */}
