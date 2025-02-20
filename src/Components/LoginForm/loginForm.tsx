@@ -15,7 +15,7 @@ import { useHistory } from "react-router-dom";
 import { loginUser } from "../../api";
 import "./login.css";
 
-const Login: React.FC = () => {
+const LoginForm: React.FC = () => {
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [isValid, setIsValid] = useState<boolean>(false);
@@ -119,4 +119,4 @@ const Login: React.FC = () => {
   );
 };
 
-export default Login;
+export default LoginForm;
