@@ -1,6 +1,12 @@
 import React from "react";
-import { IonPage, IonContent, IonHeader, IonToolbar, IonTitle } from "@ionic/react";
-import LoginForm from "../../Components/LoginForm/loginForm"; 
+import {
+  IonPage,
+  IonHeader,
+  IonToolbar,
+  IonTitle,
+  IonContent,
+} from "@ionic/react";
+import LoginForm from "../../Components/LoginForm/loginForm";
 
 const Login: React.FC = () => {
   return (
@@ -10,9 +16,9 @@ const Login: React.FC = () => {
           <IonTitle>Login</IonTitle>
         </IonToolbar>
       </IonHeader>
-
       <IonContent fullscreen>
-        <LoginForm /> 
+        {/* Aquí renderizamos el componente de formulario */}
+        <LoginForm />
       </IonContent>
     </IonPage>
   );
